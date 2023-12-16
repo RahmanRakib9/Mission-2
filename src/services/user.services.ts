@@ -14,7 +14,7 @@ const getAllUsersFromDB = async (): Promise<IUser[]> => {
 };
 
 // get specific user from mongoDB
-const getSingleUserFrom = async (id: string): Promise<IUser | null> => {
+const getSingleUserFromDB = async (id: string): Promise<IUser | null> => {
   const result = User.findById(id);
   return result;
 };
@@ -43,7 +43,7 @@ const deleteUserFromDB = async (
 export const userServices = {
   createUserIntoDB,
   getAllUsersFromDB,
-  getSingleUserFrom,
+  getSingleUserFromDB,
   updateUserFromDB,
   deleteUserFromDB,
 };
