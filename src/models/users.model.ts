@@ -1,5 +1,7 @@
+import bcrypt from 'bcrypt';
 import { Schema, model } from 'mongoose';
 import { IUser } from '../interfaces/users.interface';
+import config from '../app/config/config';
 
 const userSchema = new Schema<IUser>({
   userId: {
@@ -61,6 +63,27 @@ const userSchema = new Schema<IUser>({
       type: Number,
     },
   },
+});
+
+// pre hook middleware hook
+userSchema.pre('save', async function (next) {
+  // hash the password before save it into DB
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
+  const user = this;
+  user.password = await bcrypt.hash(
+    user.password,
+    Number(config.bcrypt_salt_rounds),
+  );
+
+  next();
+});
+
+// post save middleware hook that hide the password field while send response to the client
+userSchema.post('save', function (doc, next) {
+  doc.password = '';
+
+  // calling the next middleware
+  next();
 });
 
 const User = model<IUser>('user', userSchema);
