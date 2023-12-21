@@ -24,11 +24,11 @@ const updateUserFromDB = async (
   id: string,
   userData: IUser,
 ): Promise<IUser | null> => {
-  const result = User.findByIdAndUpdate(id, userData, {
+  const result = await User.findByIdAndUpdate(id, userData, {
     new: true, // Return the updated document instead of the original
     runValidators: true, // Run any specified validation on the update operation
   });
-  return result;
+  return result; // Return the updated document or null if not found
 };
 
 // delete an user from DB
