@@ -41,15 +41,20 @@ const deleteUserFromDB = async (
 };
 
 // create a new product into DB
-const createNewProductIntoDB = async (productData: IOrder)=> {
+const createNewProductIntoDB = async (productData: IOrder) => {
   const result = await User.create(productData);
   return result;
 };
 
-const getAllProductsFromDB=async()=>{
-  const result=await User.find();
+const getAllProductsFromDB = async () => {
+  const result = await User.find();
   return result;
-}
+};
+
+const calculateTotalPriceIntoDB = (productData: IOrder) => {
+  const result = productData.price * productData.quantity;
+  return result;
+};
 
 export const userServices = {
   createUserIntoDB,
@@ -58,5 +63,6 @@ export const userServices = {
   updateUserFromDB,
   deleteUserFromDB,
   createNewProductIntoDB,
-  getAllProductsFromDB
+  getAllProductsFromDB,
+  calculateTotalPriceIntoDB,
 };

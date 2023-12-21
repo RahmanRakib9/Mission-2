@@ -28,7 +28,10 @@ app.use('/api', userRoutes);
 app.use('/api/users', userRoutes);
 
 // retrieve all the orders
-app.use("/api/users")
+app.use('/api/users', userRoutes);
+
+// calculate the total price
+app.use('/api/users', userRoutes);
 
 // application root route
 app.get('/', (req: Request, res: Response) => {
