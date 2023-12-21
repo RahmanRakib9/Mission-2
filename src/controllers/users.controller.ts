@@ -150,29 +150,29 @@ const getAllProducts = async (req: Request, res: Response) => {
 };
 
 // controller that calculate the total price
-const calculateTotalPrice = async (req: Request, res: Response) => {
-  try {
-    const result = await userServices.calculateTotalPriceIntoDB();
+// const calculateTotalPrice = async (req: Request, res: Response) => {
+//   try {
+//     const result = await userServices.calculateTotalPriceIntoDB();
 
-    res.status(200).json({
-      success: true,
-      message: 'Total price calculated successfully!',
-      data: {
-        totalPrice: result,
-      },
-    });
-  } catch (error: any) {
-    console.log(error);
-    res.json({
-      success:false,
-      message:"Product not found!",
-      error:{
-        code:404,
-        description:"product not found"
-      }
-    })
-  }
-};
+//     res.status(200).json({
+//       success: true,
+//       message: 'Total price calculated successfully!',
+//       data: {
+//         totalPrice: result,
+//       },
+//     });
+//   } catch (error: any) {
+//     console.log(error);
+//     res.json({
+//       success: false,
+//       message: 'Product not found!',
+//       error: {
+//         code: 404,
+//         description: 'product not found',
+//       },
+//     });
+//   }
+// };
 
 const userController = {
   createUser,

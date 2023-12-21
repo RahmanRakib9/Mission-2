@@ -35,7 +35,7 @@ app.use('/api/users', userRoutes);
 
 // application root route
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello From Node Typescript Clean Template Application!');
+  res.send('Hello From Node Typescript Clean Template Application yeyeyeyeyeye!');
 });
 
 export default app;
