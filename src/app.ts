@@ -23,6 +23,13 @@ app.use('/api', userRoutes);
 // delete user
 app.use('/api', userRoutes);
 
+// order routes
+// create a new order
+app.use('/api/users', userRoutes);
+
+// retrieve all the orders
+app.use("/api/users")
+
 // application root route
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello From Node Typescript Clean Template Application!');

@@ -1,19 +1,19 @@
-import { IUser } from '../interfaces/users.interface';
+import { IOrder, IUser } from '../interfaces/users.interface';
 import User from '../models/users.model';
 
-// create a new user unto mongoDB
+// create a new user unto DB
 const createUserIntoDB = async (userData: IUser): Promise<IUser> => {
   const result = await User.create(userData);
   return result;
 };
 
-// get all users from mongoDB
+// get all users from DB
 const getAllUsersFromDB = async (): Promise<IUser[]> => {
   const result = await User.find();
   return result;
 };
 
-// get specific user from mongoDB
+// get specific user from DB
 const getSingleUserFromDB = async (id: string): Promise<IUser | null> => {
   const result = User.findById(id);
   return result;
@@ -25,10 +25,10 @@ const updateUserFromDB = async (
   userData: IUser,
 ): Promise<IUser | null> => {
   const result = await User.findByIdAndUpdate(id, userData, {
-    new: true, // Return the updated document instead of the original
-    runValidators: true, // Run any specified validation on the update operation
+    new: true,
+    runValidators: true,
   });
-  return result; // Return the updated document or null if not found
+  return result;
 };
 
 // delete an user from DB
@@ -40,10 +40,23 @@ const deleteUserFromDB = async (
   return result;
 };
 
+// create a new product into DB
+const createNewProductIntoDB = async (productData: IOrder)=> {
+  const result = await User.create(productData);
+  return result;
+};
+
+const getAllProductsFromDB=async()=>{
+  const result=await User.find();
+  return result;
+}
+
 export const userServices = {
   createUserIntoDB,
   getAllUsersFromDB,
   getSingleUserFromDB,
   updateUserFromDB,
   deleteUserFromDB,
+  createNewProductIntoDB,
+  getAllProductsFromDB
 };

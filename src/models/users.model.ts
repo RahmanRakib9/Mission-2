@@ -1,8 +1,22 @@
 import bcrypt from 'bcrypt';
 import { Schema, model } from 'mongoose';
-import { IUser } from '../interfaces/users.interface';
+import { IOrder, IUser } from '../interfaces/users.interface';
 import config from '../app/config/config';
 
+// order schema
+const orderSchema = new Schema<IOrder>({
+  productName: {
+    type: String,
+  },
+  price: {
+    type: Number,
+  },
+  quantity: {
+    type: Number,
+  },
+});
+
+// user schema
 const userSchema = new Schema<IUser>({
   userId: {
     type: Number,
@@ -52,17 +66,7 @@ const userSchema = new Schema<IUser>({
       type: String,
     },
   },
-  orders: {
-    productName: {
-      type: String,
-    },
-    price: {
-      type: Number,
-    },
-    quantity: {
-      type: Number,
-    },
-  },
+  orders: [orderSchema],
 });
 
 // pre hook middleware hook

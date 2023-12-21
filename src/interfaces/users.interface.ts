@@ -1,3 +1,11 @@
+// order interface
+interface IOrder {
+  productName: string;
+  price: number;
+  quantity: number;
+}
+
+// user interface
 interface IUser {
   userId: number;
   username: string;
@@ -15,13 +23,7 @@ interface IUser {
     city: string;
     country: string;
   };
-  orders: [
-    {
-      productName: string;
-      price: number;
-      quantity: number;
-    },
-  ];
+  orders: IOrder[];
 }
 
-export { IUser };
+export { IUser, IOrder };

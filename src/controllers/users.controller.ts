@@ -106,12 +106,60 @@ const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
+// controller that create a new product
+const createNewProduct = async (req: Request, res: Response) => {
+  try {
+    const orderData = req.body;
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+    const result = await userServices.createNewProductIntoDB(orderData);
+
+    res.status(201).json({
+      success: true,
+      message: 'Order created successfully!',
+      data: null,
+    });
+  } catch (error: any) {
+    console.log(error);
+    res.status(500).json({
+      error: error.message || 'something went wrong',
+    });
+  }
+};
+
+// controller that return all the created product
+const getAllProducts=async(req:Request,res:Response)=> {
+  try
+  {
+    const result=await userServices.getAllProductsFromDB();
+
+    res.status(200).json({
+      success: true,
+    message: "Order fetched successfully!",
+    data:result
+    })
+
+  }catch(error:any)
+  {
+    console.log(error);
+    res.json({
+      success: false,
+    message: "orders not found",
+    "error": {
+        "code": 404,
+        description: "orders not found!"
+    }
+    })
+  }
+}
+
 const userController = {
   createUser,
   getAllUsers,
   getSingleUser,
   updateUser,
   deleteUser,
+  createNewProduct,
+  getAllProducts
 };
 
 export default userController;

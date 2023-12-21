@@ -13,9 +13,15 @@ router.get('/users', userController.getAllUsers);
 router.get('/users/:userId', userController.getSingleUser);
 
 //api that perform an user update operation based on userId
-router.put('/users/:userId');
+router.put('/users/:userId', userController.updateUser);
 
 //api that perform a delete operation based on userId
 router.delete('/users/:userId', userController.deleteUser);
+
+// api that create a new product
+router.put('/:userId/orders', userController.createNewProduct);
+
+// api that return all the created product
+router.put('/:userId/orders',userController.getAllProducts);
 
 export const userRoutes = router;
